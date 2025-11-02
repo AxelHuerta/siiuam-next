@@ -13,7 +13,7 @@ async function onSubmit(formData: FormData) {
   const response = await login(matricula, password);
   if (!response) return;
 
-  redirect("/home");
+  redirect("/");
 }
 
 export default async function Home() {
