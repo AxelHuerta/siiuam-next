@@ -56,7 +56,10 @@ export async function POST(request: Request) {
     }
     const formattedFrameCookies = parseCookies(frameCookies);
 
-    const bodyParams = `SIGLAS_UNI_XX.E_UNIDAD.AE02.1=IZT&%23.E_UNIDAD.AE02.1=AxJDMg%3D%3D&%23CRC.E_UNIDAD.AE02.1=00000048&NOMBRE.IDENTIFICACION.NONMODELED=${matricula}&COMPLEMENTO.IDENTIFICACION.NONMODELED=${password}&GO.IDENTIFICACION.NONMODELED=Entrar&%25.IDENTIFICACION.NONMODELED=&%23.WEB_INFO.SW01=&%23.WEB_MOD_ASO.SW01=&%23.USUARIO_ANEXO.SG02=&%23.MODULO_UWAS.SAE01=`;
+    const bodyParams = `
+SIGLAS_UNI_XX.E_UNIDAD.AE02.1=IZT&%23.E_UNIDAD.AE02.1=AxJDMg%3D%3D&%23CRC.E_UNIDAD.AE02.1=00000054&NOMBRE.IDENTIFICACION.NONMODELED=${matricula}&COMPLEMENTO.IDENTIFICACION.NONMODELED=${password}&GO.IDENTIFICACION.NONMODELED=Entrar&%25.IDENTIFICACION.NONMODELED=&%23.WEB_INFO.SW01=&%23.WEB_MOD_ASO.SW01=&%23.USUARIO_ANEXO.SG02=&%23.MODULO_UWAS.SAE01=,      
+
+`;
 
     const headers = {
       accept:
@@ -64,7 +67,7 @@ export async function POST(request: Request) {
       "accept-language": "en-US,en;q=0.9,es;q=0.8",
       "cache-control": "max-age=0",
       "content-type": "application/x-www-form-urlencoded",
-      "sec-ch-ua": '"Chromium";v="141", "Not?A_Brand";v="8"',
+      "sec-ch-ua": '"Not_A Brand";v="99", "Chromium";v="142"',
       "sec-ch-ua-mobile": "?0",
       "sec-ch-ua-platform": '"Linux"',
       "sec-fetch-dest": "frame",
@@ -72,14 +75,9 @@ export async function POST(request: Request) {
       "sec-fetch-site": "same-origin",
       "sec-fetch-user": "?1",
       "upgrade-insecure-requests": "1",
-
       cookie: `${formattedFrameCookies[0]}; ${parsedCookies[1]}; ${parsedCookies[0]}`,
       Referer:
         "https://zacatlan.rec.uam.mx:8443/rec/izt/AEWBU004.oIniSesWebLic?mod=1",
-      "Upgrade-Insecure-Requests": "1",
-      "User-Agent":
-        "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 Chrome/141.0 Safari/537.36",
-      Connection: "keep-alive",
     };
 
     const loginResponse = await axios
