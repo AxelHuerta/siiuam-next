@@ -3,10 +3,12 @@
 import axios from "axios";
 import { cookies } from "next/headers";
 
+const API_URL = process.env.NEXT_PUBLIC_API_URL || "http://localhost:3000/api";
+
 export default async function login(matricula: string, password: string) {
   const cookieStore = await cookies();
   const response = await axios
-    .post("http://localhost:3000/api/login", {
+    .post(`${API_URL}/login`, {
       matricula,
       password,
     })
