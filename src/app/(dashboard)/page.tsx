@@ -1,11 +1,5 @@
 import getStudentInfo from "@/actions/get-student-info";
-import {
-  Card,
-  CardContent,
-  CardDescription,
-  CardHeader,
-  CardTitle,
-} from "@/components/ui/card";
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Progress } from "@/components/ui/progress";
 import { StudentData } from "@/interfaces";
 
@@ -21,7 +15,53 @@ export default async function Page() {
   );
 
   return (
-    <section className="flex gap-4 w-full justify-center">
+    <section className="flex flex-col gap-4 mx-auto my-4 justify-center max-w-5xl">
+      <div>
+        <Card className="h-48">
+          <CardHeader>
+            <CardTitle>Información General</CardTitle>
+          </CardHeader>
+          <CardContent className="space-y-1">
+            <p className="text-md font-semibold">
+              {general.name} {general.paternalLastName}{" "}
+              {general.maternalLastName}
+            </p>
+            <p>Matrícula: {general.matricula}</p>
+            <p>Nacionalidad: {general.nacionality}</p>
+          </CardContent>
+        </Card>
+      </div>
+
+      <div className="grid grid-cols-3 gap-4">
+        <Card className="bg-neutral-50">
+          <CardHeader>
+            <CardTitle>Promedio General</CardTitle>
+          </CardHeader>
+          <CardContent>
+            <span className="text-3xl font-bold">{performance.generalAvg}</span>
+          </CardContent>
+        </Card>
+
+        <Card className="bg-neutral-50">
+          <CardHeader>
+            <CardTitle>Estatus</CardTitle>
+          </CardHeader>
+          <CardContent>
+            <span className="text-3xl font-bold">{general.academicStatus}</span>
+          </CardContent>
+        </Card>
+
+        <Card className="bg-neutral-50">
+          <CardHeader>
+            <CardTitle>Último Trimestre Inscrito</CardTitle>
+          </CardHeader>
+          <CardContent>
+            <span className="text-3xl font-bold">
+              {performance.lastEnrrolmentTrimester}
+            </span>
+          </CardContent>
+        </Card>
+      </div>
       <div className="space-y-4">
         <Card>
           <CardHeader>
@@ -30,40 +70,7 @@ export default async function Page() {
             </CardTitle>
           </CardHeader>
           <CardContent>
-            <div className="grid grid-cols-3 gap-4">
-              <Card className="bg-neutral-50">
-                <CardHeader>
-                  <CardDescription>Promedio General</CardDescription>
-                </CardHeader>
-                <CardContent>
-                  <span className="text-3xl font-bold">
-                    {performance.generalAvg}
-                  </span>
-                </CardContent>
-              </Card>
-
-              <Card className="bg-neutral-50">
-                <CardHeader>
-                  <CardDescription>Estatus</CardDescription>
-                </CardHeader>
-                <CardContent>
-                  <span className="text-3xl font-bold">
-                    {general.academicStatus}
-                  </span>
-                </CardContent>
-              </Card>
-
-              <Card className="bg-neutral-50">
-                <CardHeader>
-                  <CardDescription>Último Trimestre Inscrito</CardDescription>
-                </CardHeader>
-                <CardContent>
-                  <span className="text-3xl font-bold">
-                    {performance.lastEnrrolmentTrimester}
-                  </span>
-                </CardContent>
-              </Card>
-            </div>
+            <div className="grid grid-cols-3 gap-4"></div>
 
             <div className="m-5 space-y-4">
               <h2 className="text-lg font-semibold">Avance de Créditos</h2>
@@ -114,19 +121,6 @@ export default async function Page() {
           </CardContent>
         </Card>
       </div>
-
-      <Card className="h-48">
-        <CardHeader>
-          <CardTitle>Información General</CardTitle>
-        </CardHeader>
-        <CardContent className="space-y-1">
-          <p className="text-md font-semibold">
-            {general.name} {general.paternalLastName} {general.maternalLastName}
-          </p>
-          <p>Matrícula: {general.matricula}</p>
-          <p>Nacionalidad: {general.nacionality}</p>
-        </CardContent>
-      </Card>
     </section>
   );
 }
