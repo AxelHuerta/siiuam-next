@@ -32,6 +32,11 @@ const items = [
     url: "/kardex",
     icon: Inbox,
   },
+  {
+    title: "Horario",
+    url: "/horario",
+    icon: Inbox,
+  },
 ];
 
 export function AppSidebar() {
@@ -85,12 +90,6 @@ export function AppSidebar() {
                 side="top"
                 className="w-[--radix-popper-anchor-width]"
               >
-                <DropdownMenuItem>
-                  <span>Account</span>
-                </DropdownMenuItem>
-                <DropdownMenuItem>
-                  <span>Billing</span>
-                </DropdownMenuItem>
                 <DropdownMenuItem
                   onClick={async () => {
                     await logout();
