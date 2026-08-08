@@ -4,25 +4,19 @@ import axios from "axios";
 import { cookies } from "next/headers";
 import * as cheerio from "cheerio";
 
-const API_URL = process.env.NEXT_PUBLIC_API_URL || "http://localhost:3000/api";
-
 export default async function login(matricula: string, password: string) {
   const cookieStore = await cookies();
-  const response = await axios
-    .post(`${API_URL}/login`, {
-      matricula,
-      password,
-    })
-    .then((res) => res.data)
-    .catch((error) => {
-      console.error("Login API ERROR:", error);
-      return null;
-    });
+  const response = await getCookies(matricula, password);
 
-  cookieStore.set("COOKIEDATOS", response.cookies.COOKIEDATOS);
-  cookieStore.set("MY_VARLIST_COOKIE", response.cookies.MY_VARLIST_COOKIE);
-  cookieStore.set("UwdSessionID", response.cookies.UwdSessionID);
-  cookieStore.set("JSESSIONID", response.cookies.JSESSIONID);
+  if (!response) {
+    console.error("Login failed: could not retrieve cookies");
+    return null;
+  }
+
+  cookieStore.set("COOKIEDATOS", response.COOKIEDATOS || "");
+  cookieStore.set("MY_VARLIST_COOKIE", response.MY_VARLIST_COOKIE || "");
+  cookieStore.set("UwdSessionID", response.UwdSessionID || "");
+  cookieStore.set("JSESSIONID", response.JSESSIONID || "");
 
   return response;
 }
